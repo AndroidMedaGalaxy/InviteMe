@@ -8,10 +8,10 @@ import kotlin.math.*
 * Utility to accept customer location data and calculate
 * the distance between the office and the customer
 * */
-object GPSUtil {
+object GPSGreatCircleUtil {
 
     fun calcDistance(planetRadius: Int, customerLocation: LatLong): Double {
-        var officeLatLocation = LatLong(
+        var officeLatLocation = LatLong( //Creating Latlong Object for Intercom office location
             latitude = Constants.INTERCOM_OFFICE_LATITUDE.toDouble(),
             longitude = Constants.INTERCOM_OFFICE_LONGITUDE.toDouble()
         )

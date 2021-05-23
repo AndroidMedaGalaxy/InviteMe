@@ -5,7 +5,7 @@ import ritsam.intercom.invite.me.data.model.Customer
 import ritsam.intercom.invite.me.data.model.LatLong
 import ritsam.intercom.invite.me.data.repo.CustomerRepo
 import ritsam.intercom.invite.me.util.Constants
-import ritsam.intercom.invite.me.util.GPSUtil
+import ritsam.intercom.invite.me.util.GPSGreatCircleUtil
 
 /*
  * ViewModel for the MainFragment
@@ -42,7 +42,7 @@ class MainViewModel : ViewModel() {
         val processCustomerList = ArrayList<Customer>()
         for (customer in customerList)
 
-            if (GPSUtil.calcDistance(
+            if (GPSGreatCircleUtil.calcDistance(
                     Constants.EARTH_RADIUS, LatLong(
                         latitude = customer.latitude.toDouble(),
                         longitude = customer.longitude.toDouble()
@@ -51,6 +51,7 @@ class MainViewModel : ViewModel() {
             ) {
                 processCustomerList.add(customer)
             }
-        customerProcessedLiveData.postValue(processCustomerList)
+       var processedSortedArray =  processCustomerList.sortedWith(compareBy { it.user_id })
+        customerProcessedLiveData.postValue(processedSortedArray)
     }
 }
