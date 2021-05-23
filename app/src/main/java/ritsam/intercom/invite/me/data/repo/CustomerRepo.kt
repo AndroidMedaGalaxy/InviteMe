@@ -14,10 +14,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 import ritsam.intercom.invite.me.data.model.Customer
 import ritsam.intercom.invite.me.data.service.CustomerService
 
-
+/*
+ * Repository to fetch and present the data in usable format ( Model Objects)
+ * */
 class CustomerRepo {
     companion object {
-        private val CUSTOMER_SERVICE_BASE_URL = "https://s3.amazonaws.com/"
+        private const val CUSTOMER_SERVICE_BASE_URL = "https://s3.amazonaws.com/"
     }
 
     private var customerService: CustomerService
@@ -35,6 +37,9 @@ class CustomerRepo {
             .create(CustomerService::class.java)
     }
 
+    /**
+     * Making network call to get the hosted file
+     * **/
     fun fetchCustomers() {
         customerService.downloadCustomerFile()
             ?.enqueue(object : Callback<ResponseBody?> {
@@ -44,24 +49,34 @@ class CustomerRepo {
                 ) {
                     if (response.body() != null) {
                         customerResponsiveData.postValue(extractResponse(response.body()!!))  // using assertion because we have the null check already
+                    } else {
+                        customerResponsiveData.postValue(null)  // setting value as null when nothing is returned
                     }
                 }
 
                 override fun onFailure(call: Call<ResponseBody?>?, t: Throwable?) {
-                    customerResponsiveData.postValue(null)
+                    customerResponsiveData.postValue(null) //setting value as null when request fails
                 }
             })
     }
 
+    /** Providing LiveData object to be consumed
+     * @return LiveData containing list of customers
+     * */
     fun getCustomerResponseLiveData(): LiveData<List<Customer>?> {
         return customerResponsiveData
     }
 
+    /** Converting plaintext into List of Customer Objects
+     * @param body
+     *
+     * @return List of Customers
+     * */
     private fun extractResponse(body: ResponseBody): List<Customer> {
         val buffer = body.charStream()
         val stringList = buffer.readLines()
-        var customerList = ArrayList<Customer>()
-        var gson = Gson()
+        val customerList = ArrayList<Customer>()
+        val gson = Gson()
         for (lineItem in stringList) {
             val customer = gson.fromJson(lineItem, Customer::class.java)
             customerList.add(customer)
