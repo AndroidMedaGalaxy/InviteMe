@@ -20,6 +20,7 @@ class MainViewModel : ViewModel() {
         customerResponseLiveData = customerRepo.getCustomerResponseLiveData()
     }
 
+
     /**
      * Provides access to the LiveData
      *
@@ -52,6 +53,7 @@ class MainViewModel : ViewModel() {
                 processCustomerList.add(customer)
             }
        var processedSortedArray =  processCustomerList.sortedWith(compareBy { it.user_id })
-        customerProcessedLiveData.postValue(processedSortedArray)
+       customerProcessedLiveData.postValue(processedSortedArray)
     }
+
 }

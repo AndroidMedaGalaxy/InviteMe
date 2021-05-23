@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import ritsam.intercom.invite.me.R
 import ritsam.intercom.invite.me.adapter.CustomerViewAdapter
+import ritsam.intercom.invite.me.data.model.Customer
 import ritsam.intercom.invite.me.databinding.MainFragmentBinding
 import ritsam.intercom.invite.me.util.Constants
 
@@ -53,15 +54,36 @@ class MainFragment : Fragment() {
             if (customerList != null) {
                 viewModel.processCustomers(customerList) // sending the data to viewmodel for processing
             }
+            else binding.message.text = getString(R.string.error_text)
         })
 
         // observing processed Live data
         viewModel.customerProcessedLiveData.observe(viewLifecycleOwner, { customerList ->
             binding.message.text = getString(R.string.top_message, customerList?.size, Constants.SEARCH_RADIUS)
             if (customerList != null) {
+                for(customer in customerList)  // IMPORTANT:  Only for the purpose of Loggin the output. Strictly no loggin in Production APp
+                {
+
+                    logOutput(customer)
+                }
                 customerAdapter = CustomerViewAdapter(requireActivity(), customerList)
                 binding.recyclerView.adapter = customerAdapter
             }
         })
+    }
+
+    /**
+     * STRICTLY FOR ASSIGNMENT PURPOSE ONLY
+     * YOU SHOULD NOT LOG ANY DATA IN A PRODUCTION APPLICATION
+     *
+     * As Jake Wharton (Retrofit 2.0 Author) Says,
+     * Everytime you log into production App, one puppy dies
+     *
+     * @param customer
+     * */
+    private fun logOutput(customer: Customer) {
+        Log.i("TAG",getString(R.string.txt_user_id, customer.user_id) +" " + getString(R.string.txt_name, customer.name) // User name
+            // User name
+        )
     }
 }

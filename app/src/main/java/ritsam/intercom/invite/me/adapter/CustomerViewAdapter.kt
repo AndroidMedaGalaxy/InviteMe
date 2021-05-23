@@ -1,6 +1,7 @@
 package ritsam.intercom.invite.me.adapter
 
 import android.app.Activity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,7 @@ class CustomerViewAdapter(context: Activity?, customerList: List<Customer>): Rec
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindItems(customer: Customer) {
+
 
             val textUserId = itemView.findViewById(R.id.txt_user_id) as TextView
             val textUserName = itemView.findViewById(R.id.txt_name) as TextView
