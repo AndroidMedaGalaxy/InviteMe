@@ -53,15 +53,19 @@ class MainFragment : Fragment() {
         viewModel.getCustomerData().observe(viewLifecycleOwner, { customerList ->
             if (customerList != null) {
                 viewModel.processCustomers(customerList) // sending the data to viewmodel for processing
-            }
-            else binding.message.text = getString(R.string.error_text)
+            } else binding.message.text = getString(R.string.error_text)
         })
 
         // observing processed Live data
         viewModel.customerProcessedLiveData.observe(viewLifecycleOwner, { customerList ->
-            binding.message.text = getString(R.string.top_message, customerList?.size, Constants.SEARCH_RADIUS)
+            binding.message.text =
+                getString(R.string.top_message, customerList?.size, Constants.SEARCH_RADIUS)
             if (customerList != null) {
-                for(customer in customerList)  // IMPORTANT:  Only for the purpose of Loggin the output. Strictly no loggin in Production APp
+                Log.i(
+                    "TAG",
+                    getString(R.string.top_message, customerList?.size, Constants.SEARCH_RADIUS)
+                )
+                for (customer in customerList)  // IMPORTANT:  Only for the purpose of Loggin the output. Strictly no loggin in Production APp
                 {
 
                     logOutput(customer)
@@ -82,7 +86,12 @@ class MainFragment : Fragment() {
      * @param customer
      * */
     private fun logOutput(customer: Customer) {
-        Log.i("TAG",getString(R.string.txt_user_id, customer.user_id) +" " + getString(R.string.txt_name, customer.name) // User name
+        Log.i(
+            "TAG",
+            getString(R.string.txt_user_id, customer.user_id) + " " + getString(
+                R.string.txt_name,
+                customer.name
+            ) // User name
             // User name
         )
     }
