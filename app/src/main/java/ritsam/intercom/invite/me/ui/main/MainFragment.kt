@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import retrofit2.Response.error
 import ritsam.intercom.invite.me.R
 import ritsam.intercom.invite.me.adapter.CustomerViewAdapter
 import ritsam.intercom.invite.me.databinding.MainFragmentBinding
@@ -53,6 +54,7 @@ class MainFragment : Fragment() {
             if (customerList != null) {
                 viewModel.processCustomers(customerList) // sending the data to viewmodel for processing
             }
+            else binding.message.text = getString(R.string.error_text)
         })
 
         // observing processed Live data

@@ -63,7 +63,7 @@ class CustomerRepo {
     /** Providing LiveData object to be consumed
      * @return LiveData containing list of customers
      * */
-    fun getCustomerResponseLiveData(): LiveData<List<Customer>?> {
+    fun getCustomerResponseLiveData(): MutableLiveData<List<Customer>?> {
         return customerResponsiveData
     }
 
