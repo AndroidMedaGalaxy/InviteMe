@@ -1,11 +1,13 @@
 package ritsam.intercom.invite.me.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import ritsam.intercom.invite.me.R
 
 class MainFragment : Fragment() {
@@ -23,10 +25,17 @@ class MainFragment : Fragment() {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
+        //observing the data that's returned by the repo
+        viewModel.getCustomerData()?.observe(viewLifecycleOwner, Observer { customerList->
+            if (customerList != null) {
+                for (customer in customerList) {
+                    Log.i("Fragment",customer.name)
+                }
+            }
+        })
+    }
 }
