@@ -1,5 +1,30 @@
-# InviteMe
+# InviteMe [![CircleCI](https://circleci.com/gh/ritsam/InviteMe.svg?style=shield)](https://app.circleci.com/pipelines/github/ritsam/InviteMe)
+
+
 InVite me is an Application that acts as a solution to Programming test
+
+# Instrcution to Run and Test the Project
+1. Download the Zip or Clone the Projectand Open in Android studio
+2. Once Installed, just run the application
+3. The Customers should be sorted by their GeoGraphical location and should be populated in a list.
+
+# Key Files and their purpose
+
+● **CustomerRepo** - Acts as a Repository and also a black box that processes plain text and provides us with a MutableLivedata that contains the List of the Customer Objct
+
+● **GPSGreatCircleUtil** - takes radius of the planet and customer geoLocation information as paramters and returs the distance from the default location
+
+● **Constants** - Earth radius, search radius, default (office) location etc is provided by this object. 
+
+● **MainViewModel** - performs data in the background making the Fragment (UIThread()) truly lightweight and independant. 
+
+● **LatLong** - Custom data class to hold lat and long values
+
+● **Customer** - Model data class for Customers
+
+## Screenshots
+![gif-InviteMe](https://user-images.githubusercontent.com/54317407/119280848-1e209700-bc2b-11eb-8402-0ccf6ecb5b97.gif)
+
 
 ## Motivation
 Lightweight feature focused App targeted towards a company loiking to invite customers for their events based on customer's geolocation. Distance is calculated with the Great Circle distance formulae
@@ -21,12 +46,7 @@ We have some customer records in a text file (customers.txt) -- one customer per
 
 ### Methodology
 Retrofit, MVVM Architecture, Repository, Unit Testing
-## Build Status 
-Circle CI is setup on the repo. Each time a commit happens, circle CI will build the project 
-### CircleCI Build [![CircleCI](https://circleci.com/gh/ritsam/InviteMe.svg?style=shield)](https://app.circleci.com/pipelines/github/ritsam/InviteMe)
 
-## Screenshots
-![](/media/tramcast_demo.gif)
 
 ## Output File (Used Logs to generate the valid Customer list)
 ---
