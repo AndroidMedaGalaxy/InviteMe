@@ -103,7 +103,7 @@ Retrofit, MVVM Architecture, Repository, Unit Testing
 The data is processed by the valid search radius, then sorted in ascending order and displayed in a list powered by RecyclerView for Android
 
 ## Bug Reporting
-Log your issues [Here](https://github.com/ritsam/InviteMe/issues)
+Log your issues [Here](https://github.com/AndroidMedaGalaxy/InviteMe/issues)
 
 ## Future development that I intended to do, but have to keep it minimum to satisfy the problem statement
 1. Add Pull to refresh layout, loading dialog / ProgressBar / More beautification
@@ -112,4 +112,4 @@ Log your issues [Here](https://github.com/ritsam/InviteMe/issues)
 4. Improved Animations and UI polishing
 
 ## License
-MIT © [RitSam](https://github.com/ritsam)
+MIT © [RitSam](https://github.com/AndroidMedaGalaxy)
