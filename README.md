@@ -1,4 +1,4 @@
-# InviteMe [![CircleCI](https://circleci.com/gh/ritsam/InviteMe.svg?style=shield)](https://app.circleci.com/pipelines/github/ritsam/InviteMe)
+# InviteMe [![CircleCI](https://circleci.com/gh/AndroidMedaGalaxy/InviteMe.svg?style=shield)](https://app.circleci.com/pipelines/github/AndroidMedaGalaxy/InviteMe)
 
 
 InVite me is an Application that acts as a solution to Programming test
