@@ -6,6 +6,10 @@ plugins {
 android {
     compileSdkVersion 30
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId "ritsam.intercom.invite.me"
         minSdkVersion 18
@@ -51,7 +55,16 @@ dependencies {
 
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation 'androidx.arch.core:core-testing:2.0.1'
+
+    //Mockito
+    testImplementation "io.mockk:mockk:1.11.0"
+
+    testImplementation group: 'org.powermock', name: 'powermock-api-mockito2', version: '1.7.4'
+    testImplementation group: 'org.powermock', name: 'powermock-module-junit4', version: '1.7.4'
+    // required if you want to use Mockito for Android tests
+    androidTestImplementation 'org.mockito:mockito-android:3.7.7'
 }
